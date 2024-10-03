@@ -83,16 +83,16 @@ document.addEventListener('keydown', function(event) {
 });
 
 function checkWin() {
-    // if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
-    if (playerPosition.x === 0 && playerPosition.y === 1) {
+    if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
         setTimeout(() => {
             // alert('You win!');
-            backgroundMusic.muted = true
             playWinVideo();     // Play the video when player wins
         }, 10);
-    }
-}
-
+    } else if (playerPosition.x === 0 && playerPosition.y === 1) {
+        setTimeout(() => {
+            backgroundMusic.muted = true
+}, 10)
+}}
 function playWinVideo() {
     winVideo.style.display = "block";  // Show the video element
     winVideo.play();  // Play the video
