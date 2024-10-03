@@ -95,6 +95,7 @@ function playWinVideo() {
 }
 
 // Toggle mute for background music
+backgroundMusic.muted = true
 muteButton.addEventListener('click', function() {
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
