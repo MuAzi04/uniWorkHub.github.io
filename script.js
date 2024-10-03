@@ -46,6 +46,8 @@ function drawMaze() {
         for (let x = 0; x < cols; x++) {
             if (maze[y][x] === 1) {
                 ctx.fillStyle = 'black';  // Wall
+            } else if(maze[y][x] == 2) {
+                ctx.fillStyle = 'red';
             } else {
                 ctx.fillStyle = 'white';  // Path
             }
