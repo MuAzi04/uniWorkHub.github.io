@@ -8,14 +8,23 @@
 </head>
 <body>
     <h1>Maze Game</h1>
-    <canvas id="mazeCanvas" width="600" height="600"></canvas> <!-- Adjust canvas size -->
+    <canvas id="mazeCanvas" width="600" height="600"></canvas>
     <div>
         <button id="resetButton">Reset Maze</button>
     </div>
 
+    <!-- Audio for background music -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="mu.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div>
+        <button id="muteButton">Mute Music</button>
+    </div>
+
     <!-- Hidden Video Element -->
     <video id="winVideo" width="500" controls style="display:none;">
-        <source src="scare.mp4" type="video/mp4">
+        <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 

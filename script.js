@@ -2,6 +2,8 @@ const canvas = document.getElementById('mazeCanvas');
 const ctx = canvas.getContext('2d');
 const resetButton = document.getElementById('resetButton');
 const winVideo = document.getElementById('winVideo');
+const backgroundMusic = document.getElementById('backgroundMusic'); // Reference to the background music
+const muteButton = document.getElementById('muteButton');  // Button to mute/unmute music
 
 const cellSize = 30; // Adjust cell size for a 20x20 grid
 const cols = 20; // Maze is 20x20
@@ -91,6 +93,17 @@ function playWinVideo() {
     winVideo.style.display = "block";  // Show the video element
     winVideo.play();  // Play the video
 }
+
+// Toggle mute for background music
+muteButton.addEventListener('click', function() {
+    if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        muteButton.textContent = 'Mute Music';
+    } else {
+        backgroundMusic.muted = true;
+        muteButton.textContent = 'Unmute Music';
+    }
+});
 
 resetButton.addEventListener('click', createMaze);
 
