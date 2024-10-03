@@ -81,9 +81,11 @@ document.addEventListener('keydown', function(event) {
 });
 
 function checkWin() {
-    if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
+    // if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
+    if (playerPosition.x === 0 && playerPosition.y === 1) {
         setTimeout(() => {
-            alert('You win!');
+            // alert('You win!');
+            backgroundMusic.muted = true
             playWinVideo();     // Play the video when player wins
         }, 10);
     }
@@ -95,7 +97,7 @@ function playWinVideo() {
 }
 
 // Toggle mute for background music
-backgroundMusic.muted = true
+backgroundMusic.muted = false
 muteButton.addEventListener('click', function() {
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
