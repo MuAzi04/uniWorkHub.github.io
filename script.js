@@ -9,8 +9,9 @@ const cellSize = 30; // Adjust cell size for a 20x20 grid
 const cols = 20; // Maze is 20x20
 const rows = 20;
 let maze, playerPosition;
+backgroundMusic.muted = false
 
-// Initialize a simple 20x20 maze
+// Initialize a simple 20x20 mazed
 function createMaze() {
     // A simple 20x20 maze (0 = path, 1 = wall)
     maze = [
@@ -33,7 +34,7 @@ function createMaze() {
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]
     ];
     playerPosition = { x: 0, y: 0 };  // Start position at top-left
     winVideo.style.display = "none";  // Hide video on reset
@@ -47,7 +48,7 @@ function drawMaze() {
             if (maze[y][x] === 1) {
                 ctx.fillStyle = 'black';  // Wall
             } else if(maze[y][x] == 2) {
-                ctx.fillStyle = 'red';
+                ctx.fillStyle = 'green';
             } else {
                 ctx.fillStyle = 'white';  // Path
             }
@@ -83,23 +84,48 @@ document.addEventListener('keydown', function(event) {
 });
 
 function checkWin() {
-    if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
+    // if (playerPosition.x === cols - 1 && playerPosition.y === rows - 1) {
+       if (playerPosition.x === 14 && playerPosition.y === 12) {
         setTimeout(() => {
             // alert('You win!');
             playWinVideo();     // Play the video when player wins
         }, 10);
-    } else if (playerPosition.x === 0 && playerPosition.y === 1) {
-        setTimeout(() => {
-            backgroundMusic.muted = true
-}, 10)
-}}
+    } 
+}
 function playWinVideo() {
-    winVideo.style.display = "block";  // Show the video element
-    winVideo.play();  // Play the video
+    // Show the black screen as soon as the video starts
+    
+    
+    // Optionally hide game elements
+    backgroundMusic.muted = true
+    hideGameElements();
+    document.getElementById('blackScreen').style.display = "block";
+
+    // Show and play the video after a short delay (if you want)
+    setTimeout(() => {
+        winVideo.style.display = "block";  // Show the video element
+        winVideo.play();  // Play the video
+    }, 0);  // 500 ms delay for a smoother transition
+}
+
+
+// Function to hide game elements after win
+function hideGameElements() {
+    document.getElementById('mazeCanvas').style.display = 'none';
+    document.getElementById('resetButton').style.display = 'none';
+    document.getElementById('muteButton').style.display = 'none';
+}
+
+
+function displayBackgroundImage() {
+    document.body.classList.add('fullscreen-background'); // Apply background image
+    document.getElementById('mazeCanvas').classList.add('hidden'); // Hide the maze canvas
+    document.getElementById('gameTitle').classList.add('hidden');  // Hide the title
+    document.getElementById('resetButton').classList.add('hidden');  // Hide the reset button
+    document.getElementById('muteButton').classList.add('hidden');  // Hide the mute button
 }
 
 // Toggle mute for background music
-backgroundMusic.muted = false
 muteButton.addEventListener('click', function() {
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
@@ -114,3 +140,4 @@ resetButton.addEventListener('click', createMaze);
 
 // Initialize the maze when the page loads
 createMaze();
+
